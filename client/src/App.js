@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Signup from "./pages/auth/Signup";
 import Signin from "./pages/auth/Signin";
@@ -7,17 +7,25 @@ import AddBook from "./pages/AddBook";
 import ShowBook from "./pages/ShowBook";
 import "./App.css";
 
-function App() {
+const App = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
+      navigate("/showbook");
+    }
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/register" exact element={<Signup />} />
-        <Route path="/login" exact element={<Signin />} />
-        <Route path="/addbook" exact element={<AddBook />} />
-        <Route path="/Showbook" exact element={<ShowBook />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/register" exact element={<Signup />} />
+      <Route path="/login" exact element={<Signin />} />
+      <Route path="/addbook" exact element={<AddBook />} />
+      <Route path="/Showbook" exact element={<ShowBook />} />
+    </Routes>
   );
-}
+};
 
 export default App;
