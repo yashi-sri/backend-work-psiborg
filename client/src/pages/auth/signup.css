@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.signup-parent {
+  height: 50%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  margin: 10% auto;
+}
+.form {
+  width: 50%;
+}
+@media screen and (max-width: 768px) {
+  .form {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 568px) {
+  .signup-parent {
+    width: 100%;
+  }
+  .form {
+    width: 90%;
+  }
+}
